@@ -32,6 +32,8 @@
     <body>
         <table id="reactions" border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr class="header">
+                <td valign="top" colspan="3">Fuel Blocks</td>
+                <td valign="top"></td>
                 <td valign="top" colspan="3">Moon Ores</td>
                 <td valign="top"></td>
                 <td valign="top" colspan="3">Raw Materials</td>
@@ -41,6 +43,15 @@
                 <td valign="top" colspan="3">Advanced</td>
             </tr>
             <tr>
+                <td colspan="3" class="items">
+                    <ul id="blocks">
+                        <li class="">Hydrogen Fuel Block</li>
+                        <li class="">Helium Fuel Block</li>
+                        <li class="">Nitrogen Fuel Block</li>
+                        <li class="">Oxygen Fuel Block</li>
+                    </ul>
+                </td>
+                <td colspan="3" class="items"></td>
                 <td colspan="3" class="items">
                     <ul id="ores">
                         <li class="">Bitumens</li>
@@ -168,7 +179,7 @@
         <canvas id="canvas"></canvas>
         <div style="position: fixed; bottom: 0; text-align: center; width: 100%;">
         <h2 style="margin: 0px;">Disclaimer</h2>
-        Based on <a href="https://hanns.io/pi/">Alysii's/Hanns.io</a> PI Scheme<br>
+        Based on <a href="https://hanns.io/pi/">Alysii's/Hanns.io PI Scheme</a><br>
         All Inacuracies are mine<br/>
         Material related to EVE-Online is used with limited permission of CCP Games hf.<br>
         No official affiliation or endorsement by CCP Games hf is stated or implied.<br><br>
@@ -195,7 +206,8 @@
                     item = lower_case($(this).children("span").html());		// turn item name css compliant
                     $(this).attr({ id: item });								// set li id as item name
                     
-                    if ($(this).parents("ul").attr("id") != "ores") {		// ores has no before
+                    if ($(this).parents("ul").attr("id") != "ores" &&       // ores has no before
+                        $(this).parents("ul").attr("id") != "blocks") {		// neither do fuel blocks AFAIC here
                         list = $(this).attr("class").split(/\s+/);			// get before items from li class
                         for (i in list) {
                             $("#"+list[i]+" span").addClass(item);			// find id with class, inject itself into span as class
@@ -308,6 +320,7 @@
         }
 
         pi = {
+            blocks : ['helium-fuel-block','hydrogen-fuel-block','nitrogen-fuel-block','oxygen-fuel-block'],
             ores: ['Bitumens','Carnotite','Cinnabar','Cobaltite','Oceanic','Coesite','Chromite','Euxenite','Loparite','Monazite','Otavite','Pollucite','Scheelite','Sperrylite','Sylvite','Titanide','Vanadinite','Zeolites','Zircon','Xenotime','Ytterbite'],
             productions: {
                 raw: ['Atmospheric Gases','Cadmium','Caesium','Chromium','Cobalt','Dysprosium','Evaporite Deposits','Hafnium','Hydrocarbons','Mercury','Neodymium','Platinum','Promethium','Scandium','Silicates','Technetium','Thulium','Titanium','Tungsten','Vanadium'],
